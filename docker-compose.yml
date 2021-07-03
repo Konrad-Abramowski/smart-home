@@ -1,16 +1,21 @@
 version: '3'
 
 services:
-  db:
-    image: 'postgres:13.1-alpine'
-    container_name: smart-home
-    environment:
-      - POSTGRES_DB=smart-home-db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123456
-      - ALLOW_IP_RANGE-0.0.0.0/0
-    # volumes:
-    #   - ./src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/1-schema.sql
-    #   - ./src/main/resources/db/data.sql:/docker-entrypoint-initdb.d/2-data.sql
-    ports:
-    - "5432:5432"
+    db:
+        image: 'postgres:13.1-alpine'
+        container_name: smart-home-db
+        environment:
+        - POSTGRES_DB=smart-home-db
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=123456
+        # - ALLOW_IP_RANGE-0.0.0.0/0
+        ports:
+        - "5432:5432"
+    backend:
+        image: 'smart-home:latest'
+        build:
+            context: backend
+        container_name: smart-home-backend
+        ports:
+        - "8080:8080"
+    
