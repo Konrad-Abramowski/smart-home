@@ -1,21 +1,29 @@
 version: '3'
 
 services:
-    db:
+    smart-home-db:
         image: 'postgres:13.1-alpine'
         container_name: smart-home-db
         environment:
         - POSTGRES_DB=smart-home-db
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=123456
-        # - ALLOW_IP_RANGE-0.0.0.0/0
         ports:
         - "5432:5432"
-    backend:
-        image: 'smart-home:latest'
-        build:
-            context: backend
+    smart-home-backend:
         container_name: smart-home-backend
+        build: 
+            context: ./backend
         ports:
         - "8080:8080"
-    
+        depends_on:
+        - smart-home-db
+        environment: 
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://smart-home-db:5432/smart-home-db
+    smart-home-frontend:
+        container_name: smart-home-frontend
+        build: ./frontend
+        ports:
+        - "4200:4200"
+        environment:
+            - NODE_ENV=production
