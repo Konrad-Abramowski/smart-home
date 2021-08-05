@@ -8,6 +8,8 @@ services:
         - POSTGRES_DB=smart-home-db
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=123456
+        volumes: 
+        - ./database/init.sql:/docker-entrypoint-initdb.d/1-schema.sql        
         ports:
         - "5432:5432"
     smart-home-backend:
