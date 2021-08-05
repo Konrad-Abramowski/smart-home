@@ -45,6 +45,11 @@ public class FileController {
         this.fileService = fileService;
     }
 
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFiles(@RequestParam("file") MultipartFile[] files) {
         String message = "";
