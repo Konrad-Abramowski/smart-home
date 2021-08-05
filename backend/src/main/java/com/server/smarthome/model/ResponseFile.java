@@ -1,6 +1,5 @@
 package com.server.smarthome.model;
 
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 public class ResponseFile {
