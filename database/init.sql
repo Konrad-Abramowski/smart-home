@@ -1,0 +1,1 @@
+create table files (id varchar(255) not null, data oid, name varchar(255), type varchar(255), primary key (id))
