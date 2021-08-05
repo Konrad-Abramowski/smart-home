@@ -24,7 +24,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Controller
+@RestController
+@RequestMapping("/")
 public class FileController {
 
     private FileServiceImpl fileService;
