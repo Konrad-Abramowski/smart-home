@@ -12,20 +12,20 @@ services:
         - ./database/init.sql:/docker-entrypoint-initdb.d/1-schema.sql        
         ports:
         - "5432:5432"
-    smart-home-backend:
-        container_name: smart-home-backend
-        build: 
-            context: ./backend
-        ports:
-        - "8080:8080"
-        depends_on:
-        - smart-home-db
-        environment: 
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://smart-home-db:5432/smart-home-db
-    smart-home-frontend:
-        container_name: smart-home-frontend
-        build: ./frontend
-        ports:
-        - "4200:4200"
-        environment:
-            - NODE_ENV=production
+    # smart-home-backend:
+    #     container_name: smart-home-backend
+    #     build: 
+    #         context: ./backend
+    #     ports:
+    #     - "8080:8080"
+    #     depends_on:
+    #     - smart-home-db
+    #     environment: 
+    #     - SPRING_DATASOURCE_URL=jdbc:postgresql://smart-home-db:5432/smart-home-db
+    # smart-home-frontend:
+    #     container_name: smart-home-frontend
+    #     build: ./frontend
+    #     ports:
+    #     - "4200:4200"
+    #     environment:
+    #         - NODE_ENV=production
