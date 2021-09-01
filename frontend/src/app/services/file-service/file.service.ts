@@ -19,5 +19,8 @@ export class FileService {
     const upload$ = this.httpClient.post("http://localhost:8080/upload", formData);
     upload$.subscribe();
   }
-  
+
+  getFiles(): Observable<File[]> {
+    return this.httpClient.get<File[]>("http://localhost:8080/files")
+  }
 }
