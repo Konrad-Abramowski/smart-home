@@ -1,25 +1,35 @@
 <main class="pt-4">
-  <div class="column">
-    <div class="row">
-      <form class="col-8 frame my-4 mx-auto upload-form">
-        <fieldset class="upload-form__content">
-          <!--                    <h2 class="upload-form__title">Please, drop your data, in the box bellow</h2>-->
-          <div class="upload-form__drop-spot">
-            <p class="upload-form__file-name" id="file-name"></p>
-            <i class="fa fa-cloud-upload upload-form__cloud-ico"></i>
-            <input id="upload-input" type="file" name="files[]" class="upload-form__file-input upload-input" multiple/>
+  <div class="column d-flex justify-content-center">
+    <div class="row col-8">
+      <form class="frame my-4 upload-form">
+          <fieldset class="upload-form__content">
+            <!--                    <h2 class="upload-form__title">Please, drop your data, in the box bellow</h2>-->
+            <div class="upload-form__drop-spot">
+              <p class="upload-form__file-name" id="file-name"></p>
+              <i class="fa fa-cloud-upload upload-form__cloud-ico"></i>
+              <input [(ngModel)]="files" id="upload-input" type="file" name="files[]" class="upload-form__file-input upload-input" multiple/>
+            </div>
+            <div class="upload-form__utils upload-utils">
+              <button id="uploadFileButton" type="button" (click)="uploadFiles(files)"
+                      class="upload-utils__btn btn btn-primary p-2" name="Upload">Upload<i
+                class="fas fa-file-upload"></i>
+              </button>
+              <button type="button" class="btn btn-dark upload-utils__btn upload-utils__print-all p-2">Print All <i
+                class="fa fa-print"></i>
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      <div class="card my-2 col-12">
+        <div class="card-body">
+          <div class="d-flex">
+            <h5 class="card-title d-inline mr-auto overflow-hidden"></h5>
+            <button class="btn btn-danger d-inline ml-auto" type="button">Delete</button>
           </div>
-          <div class="upload-form__utils upload-utils">
-            <button id="uploadFileButton" type="button"
-                    class="upload-utils__btn btn btn-primary p-2" name="Upload">Upload<i
-              class="fas fa-file-upload"></i>
-            </button>
-            <button type="button" class="btn btn-dark upload-utils__btn upload-utils__print-all p-2">Print All <i
-              class="fa fa-print"></i>
-            </button>
-          </div>
-        </fieldset>
-      </form>
+          <h6 class="card-subtitle file-item__subtitle"></h6>
+          <a class="card-link d-inline-block pt-2 file-item__download" >Download file</a>
+        </div>
+      </div>
     </div>
     <ul id="fileList" class="row file-list">
       <li class="card my-2 col-12 file-list__item file-list__item--template">
