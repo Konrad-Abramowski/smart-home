@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FileService} from "../../services/file-service/file.service";
 
 @Component({
@@ -8,14 +8,22 @@ import {FileService} from "../../services/file-service/file.service";
   providers: [FileService]
 })
 export class MainComponent implements OnInit {
-  files: File[];
+  files: File[] = [];
 
-  constructor(private fileService: FileService) { }
+  constructor(private fileService: FileService) {
+  }
 
   ngOnInit(): void {
   }
 
-  uploadFiles(files: File[]) {
-    this.fileService.uploadFiles(files)
+  uploadFiles(fileList: FileList) {
+    this.fileService.uploadFiles(Array.prototype.slice.call(fileList))
+    this.updateFiles()
+  }
+
+  updateFiles() {
+    this.fileService.getFiles().subscribe(files => {
+      this.files = files
+    })
   }
 }

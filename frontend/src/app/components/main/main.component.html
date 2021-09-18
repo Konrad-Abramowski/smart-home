@@ -6,11 +6,11 @@
           <div class="upload-form__drop-spot">
             <p class="upload-form__file-name" id="file-name"></p>
             <i class="fa fa-cloud-upload upload-form__cloud-ico"></i>
-            <input [(ngModel)]="files" id="upload-input" type="file" name="files[]"
+            <input id="upload-input" type="file" name="file" #fileUpload
                    class="upload-form__file-input upload-input" multiple/>
           </div>
           <div class="upload-form__utils upload-utils">
-            <button id="uploadFileButton" type="button" (click)="uploadFiles(files)"
+            <button id="uploadFileButton" type="button" (click)="uploadFiles(fileUpload.files)"
                     class="upload-utils__btn btn btn-primary p-2" name="Upload">Upload<i
               class="fas fa-file-upload"></i>
             </button>
