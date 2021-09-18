@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.updateFiles()
   }
 
   uploadFiles(fileList: FileList) {
