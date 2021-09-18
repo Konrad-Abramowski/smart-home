@@ -9,13 +9,15 @@ import {MainComponent} from "./components/main/main.component";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { FileCardComponent } from './components/main/file-card/file-card.component';
+import { PrinterConfigurationComponent } from './components/printer-configuration/printer-configuration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     MainComponent,
-    FileCardComponent
+    FileCardComponent,
+    PrinterConfigurationComponent
   ],
     imports: [
         BrowserModule,
