@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {FileService} from "../../../services/file-service/file.service";
 
 @Component({
   selector: 'app-file-card',
@@ -8,10 +9,14 @@ import {Component, Input, OnInit} from '@angular/core';
 export class FileCardComponent implements OnInit {
   @Input() file
 
-  constructor() {
+  constructor(private fileService: FileService) {
   }
 
   ngOnInit(): void {
   }
 
+  deleteFile(id: string) {
+    console.log(id)
+    this.fileService.deleteFile(id)
+  }
 }

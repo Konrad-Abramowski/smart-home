@@ -23,4 +23,8 @@ export class FileService {
   getFiles(): Observable<File[]> {
     return this.httpClient.get<File[]>("http://localhost:8080/files")
   }
+
+  deleteFile(id: string) {
+    this.httpClient.delete("http://localhost:8080/files/" + id).subscribe()
+  }
 }
