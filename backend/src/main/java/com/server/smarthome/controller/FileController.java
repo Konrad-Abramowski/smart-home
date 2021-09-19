@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/")
 public class FileController {
@@ -55,7 +55,6 @@ public class FileController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/files")
     public ResponseEntity<List<ResponseFile>> getListFiles() {
         List<ResponseFile> files = fileService.getAllFiles().map(dbFile -> {
@@ -76,7 +75,6 @@ public class FileController {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
         File file = fileService.getFile(id);
