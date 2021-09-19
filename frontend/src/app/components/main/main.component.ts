@@ -30,11 +30,6 @@ export class MainComponent implements OnInit {
   }
 
   updateFilesToUpload(fileList: FileList) {
-    console.log(fileList)
-    console.log(this.filesToAdd)
-
     this.filesToAdd = Array.from(fileList)
-
-    console.log(this.filesToAdd)
   }
 }
