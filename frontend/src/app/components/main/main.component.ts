@@ -9,6 +9,7 @@ import {FileService} from "../../services/file-service/file.service";
 })
 export class MainComponent implements OnInit {
   files: File[] = [];
+  filesToAdd: File[] = []
 
   constructor(private fileService: FileService) {
   }
@@ -26,5 +27,14 @@ export class MainComponent implements OnInit {
     this.fileService.getFiles().subscribe(files => {
       this.files = files
     })
+  }
+
+  updateFilesToUpload(fileList: FileList) {
+    console.log(fileList)
+    console.log(this.filesToAdd)
+
+    this.filesToAdd = Array.from(fileList)
+
+    console.log(this.filesToAdd)
   }
 }
