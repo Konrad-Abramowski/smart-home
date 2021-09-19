@@ -16,7 +16,6 @@ export class FileCardComponent implements OnInit {
   }
 
   deleteFile(id: string) {
-    console.log(id)
     this.fileService.deleteFile(id)
   }
 }
