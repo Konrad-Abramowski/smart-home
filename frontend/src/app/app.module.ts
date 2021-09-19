@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { FileCardComponent } from './components/main/file-card/file-card.component';
 import { PrinterConfigurationComponent } from './components/printer-configuration/printer-configuration.component';
+import { PrinterMainComponent } from './components/printer-main/printer-main.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PrinterConfigurationComponent } from './components/printer-configuratio
     HeaderComponent,
     MainComponent,
     FileCardComponent,
-    PrinterConfigurationComponent
+    PrinterConfigurationComponent,
+    PrinterMainComponent
   ],
     imports: [
         BrowserModule,
