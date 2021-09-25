@@ -1,27 +1,33 @@
-from flask import Flask, Response, jsonify, request
+from flask import Flask, jsonify, request
 from yeelight import discover_bulbs
 from yeelight import Bulb
 
 app = Flask(__name__)
 
-bulb_url = '192.168.1.41'
-bulb = Bulb(bulb_url)
-
 
 @app.route('/discover_bulbs', methods=['GET'])
 def discover_all_bulbs():
-    return Response(discover_bulbs(), status=200)
+    return jsonify(discover_bulbs()), 200
 
 
-@app.route('/toggle', methods=['GET'])
-def toggle():
+@app.route('/<ip>/toggle', methods=['GET'])
+def toggle(ip):
+    bulb = Bulb(ip)
     bulb.toggle()
-    return Response(status=200)
+
+    return "", 200
 
 
-@app.route('/rgb')
-def set_rgb_value():
-    bulb.set_rgb(255, 255, 255)
+@app.route('/<ip>/rgb', methods=['GET'])
+def set_rgb_value(ip):
+    bulb = Bulb(ip)
+
+    red = int(request.args.get('red'))
+    green = int(request.args.get('green'))
+    blue = int(request.args.get('blue'))
+
+    bulb.set_rgb(red, green, blue)
+    return "", 200
 
 
 if __name__ == '__main__':
