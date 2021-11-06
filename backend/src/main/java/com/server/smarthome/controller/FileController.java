@@ -117,7 +117,6 @@ public class FileController {
 
             for (int i = 0; i < files.size(); i++) {
                 URL url = new URL(files.get(i).getUrl());
-                System.out.println(url);
                 java.io.File file = new java.io.File("file" + i + ".pdf");
                 org.apache.commons.io.FileUtils.copyURLToFile(url, file);
                 PDDocument document = PDDocument.load(file);
