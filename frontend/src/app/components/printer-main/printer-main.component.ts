@@ -10,18 +10,22 @@ import {FileService} from "../../services/file-service/file.service";
 export class PrinterMainComponent implements OnInit {
 
   files: File[] = [];
-  filesToAdd: File[] = []
+  filesToAdd: File[] = [];
+  selectedPrinter: String;
 
   constructor(private fileService: FileService) {
   }
 
   ngOnInit(): void {
+    this.getPrinter()
     this.updateFiles()
   }
 
   uploadFiles(fileList: FileList) {
-    this.fileService.uploadFiles(Array.prototype.slice.call(fileList))
-    this.updateFiles()
+    this.fileService.uploadFiles(Array.prototype.slice.call(fileList)).subscribe(files => {
+      this.files = files
+      this.filesToAdd = []
+    })
   }
 
   updateFiles() {
@@ -30,8 +34,27 @@ export class PrinterMainComponent implements OnInit {
     })
   }
 
+  getPrinter() {
+    this.fileService.getPrinter().subscribe(printer => {
+      this.selectedPrinter = printer.name
+    })
+  }
+
   updateFilesToUpload(fileList: FileList) {
     this.filesToAdd = Array.from(fileList)
   }
 
+  printAll() {
+    this.fileService.printAll()
+  }
+
+  setPrinter(printerToSet: string) {
+    this.selectedPrinter = printerToSet
+  }
+
+  deleteFile(fileId: string) {
+    this.fileService.deleteFile(fileId).subscribe(filesAfterDelete => {
+      this.files = filesAfterDelete
+    })
+  }
 }

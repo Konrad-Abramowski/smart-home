@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FileService} from "../../../services/file-service/file.service";
 
 @Component({
@@ -8,6 +8,7 @@ import {FileService} from "../../../services/file-service/file.service";
 })
 export class FileCardComponent implements OnInit {
   @Input() file
+  @Output() delete: EventEmitter<string> = new EventEmitter()
 
   constructor(private fileService: FileService) {
   }
@@ -16,6 +17,10 @@ export class FileCardComponent implements OnInit {
   }
 
   deleteFile(id: string) {
-    this.fileService.deleteFile(id)
+    this.delete.emit(id)
   }
+
+
+
+
 }
