@@ -2,6 +2,7 @@ package com.server.smarthome.controller;
 
 
 import com.server.smarthome.model.File;
+import com.server.smarthome.model.PrinterConfiguration;
 import com.server.smarthome.model.ResponseFile;
 import com.server.smarthome.service.FileServiceImpl;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -9,7 +10,6 @@ import org.apache.pdfbox.printing.PDFPageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -20,6 +20,7 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 public class FileController {
 
     private FileServiceImpl fileService;
+    private String selectedPrinter;
 
     public FileController(final FileServiceImpl fileService) {
         this.fileService = fileService;
@@ -94,6 +96,24 @@ public class FileController {
         }
     }
 
+    @GetMapping("/printer/available-printers")
+    public ResponseEntity<List<String>> getPrinters() {
+        return new ResponseEntity<>(Arrays.stream(PrintServiceLookup.lookupPrintServices(null, null))
+                .map(PrintService::getName).collect(Collectors.toList()), HttpStatus.OK);
+
+    }
+
+    @PostMapping("/printer/config/{selectedPrinter}")
+    public ResponseEntity<String> configurePrinter(@PathVariable String selectedPrinter) {
+        this.selectedPrinter = selectedPrinter;
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/printer/config")
+    public ResponseEntity<PrinterConfiguration> getPrinter() {
+        return new ResponseEntity<>(new PrinterConfiguration(this.selectedPrinter), HttpStatus.OK);
+    }
+
     @PostMapping("/printAll")
     public ResponseEntity printAllFiles() {
         List<ResponseFile> files = fileService.getAllFiles().map(dbFile -> {
@@ -112,7 +132,7 @@ public class FileController {
         }).collect(Collectors.toList());
 
         try {
-            PrintService myPrintService = fileService.findPrintService("Brother DCP-195C");
+            PrintService myPrintService = fileService.findPrintService(selectedPrinter);
 
             for (int i = 0; i < files.size(); i++) {
                 URL url = new URL(files.get(i).getUrl());
@@ -126,14 +146,11 @@ public class FileController {
                 job.print();
                 document.close();
             }
-            PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
-            for (PrintService printService : printServices) {
-                System.out.println(printService.getName());
-            }
+
         } catch (IOException | PrinterException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
