@@ -1,1 +1,20 @@
-<p>printer-configuration works!</p>
+<div class="column d-flex justify-content-center">
+  <div class="row col-6">
+    <form class="card my-3 col-12">
+      <div class="card-body p-2">
+        <div class="form-group">
+          <label class="py-2" for="printerSelect">
+            <p class="h4 font-weight-normal">Please select printer you want to use:</p></label>
+          <select class="form-control" id="printerSelect" name="availablePrinters"
+                  [(ngModel)]="selectedPrinter" required>
+            <option *ngFor="let printer of availablePrinters" [value]="printer">{{printer}}</option>
+          </select>
+          <fieldset class="row justify-content-end">
+            <button type="button"  class="btn btn-success my-2 px-2 py-1"
+                    (click)="setPrinter()">Success</button>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

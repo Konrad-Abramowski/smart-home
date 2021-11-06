@@ -1,13 +1,17 @@
 package com.server.smarthome.service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.server.smarthome.model.File;
+import com.server.smarthome.model.ResponseFile;
 import com.server.smarthome.repository.FileRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
@@ -35,6 +39,23 @@ public class FileServiceImpl implements FileService {
         return fileRepository.findAll().stream();
     }
 
+    public List<ResponseFile> getAllFilesAsResponseFileList() {
+        return this.getAllFiles().map(dbFile -> {
+            String fileDownloadUri = ServletUriComponentsBuilder
+                    .fromCurrentContextPath()
+                    .path("/files/")
+                    .path(dbFile.getId())
+                    .toUriString();
+
+            return new ResponseFile(
+                    dbFile.getId(),
+                    dbFile.getName(),
+                    fileDownloadUri,
+                    dbFile.getType(),
+                    dbFile.getData().length);
+        }).collect(Collectors.toList());
+    }
+
     public PrintService findPrintService(String printerName) {
         PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
         for (PrintService printService : printServices) {
@@ -46,7 +67,6 @@ public class FileServiceImpl implements FileService {
     }
     public boolean deleteFileById(String id){
         if(fileRepository.existsById(id)){
-            File file = new File();
             fileRepository.deleteById(id);
             return true;
         } else{
@@ -54,4 +74,3 @@ public class FileServiceImpl implements FileService {
         }
     }
 }
-

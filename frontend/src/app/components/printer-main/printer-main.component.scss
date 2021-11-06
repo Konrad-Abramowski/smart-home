@@ -1,19 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-family: Ubuntu, arial, sans-serif;
-  scroll-behavior: smooth;
-}
-
-main {
-  min-height: 100vh;
-  background: linear-gradient(to top right, #0062ED 0%, #EC003E 100%);
-  padding-bottom: 156px;
-}
+@import "../../../styles";
 
 /*!* Upload frame*!*/
 .frame {
@@ -101,27 +86,4 @@ h1 {
 
 .upload-utils__btn .fas {
   margin-left: .5em;
-}
-
-/* Card item */
-@media (max-width: 720px) {
-  .frame {
-    width: 100%;
-    height: 300px;
-
-  }
-  .center {
-    width: 80%;
-    height: 90%;
-
-  }
-  .upload-form__drop-spot{
-    height: 120px;
-  }
-  .main{
-    margin-bottom: 50vh;
-  }
-  #successModal{
-    max-width: 90vw;
-  }
 }

@@ -1,0 +1,51 @@
+<div *ngIf="selectedPrinter != null; else printerConfig" class="column d-flex justify-content-center">
+  <div class="row col-8">
+    <form class="frame my-3 upload-form">
+      <fieldset class="upload-form__content">
+        <div class="upload-form__drop-spot">
+          <p class="upload-form__file-name" id="file-name"></p>
+          <i class="fa fa-cloud-upload upload-form__cloud-ico"></i>
+          <input id="upload-input" type="file" name="file" #filesToUpload
+                 (change)="updateFilesToUpload(filesToUpload.files)"
+                 class="upload-form__file-input upload-input" multiple/>
+        </div>
+        <div class="upload-form__utils upload-utils">
+          <button id="uploadFileButton" type="button" (click)="uploadFiles(filesToUpload.files)"
+                  class="upload-utils__btn btn btn-primary p-2"
+                  [disabled]="filesToUpload.files.length === 0" name="Upload">
+            Upload
+            <i class="fas fas-file-upload"></i>
+          </button>
+          <button type="button" (click)="printAll()" class="btn btn-dark upload-utils__btn upload-utils__print-all p-2">
+            Print All
+            <i class="fa fa-print"></i>
+          </button>
+        </div>
+      </fieldset>
+      <table *ngIf="filesToAdd && filesToAdd.length !== 0" class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let file of filesToAdd">
+          <th scope="row">{{filesToAdd.indexOf(file) + 1}}</th>
+          <td>{{file.name}}</td>
+          <td>{{file.type}}</td>
+          <td>{{file.size}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </form>
+    <div class="col-12">
+      <app-file-card [file]="file" (delete)="deleteFile($event)" *ngFor="let file of files"></app-file-card>
+    </div>
+  </div>
+</div>
+<ng-template #printerConfig>
+  <app-printer-configuration (printerToSet)="setPrinter($event)"></app-printer-configuration>
+</ng-template>
