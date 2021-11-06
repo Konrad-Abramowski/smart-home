@@ -36,45 +36,25 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
-
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFiles(@RequestParam("file") MultipartFile[] files) {
-        String message = "";
-        var response = new ResponseFile[files.length];
         try {
-            for (int i = 0; i < files.length; i++) {
-                var addedFile = fileService.store(files[i]);
-                response[i] = new ResponseFile(addedFile);
-                var result = new ResponseFile(addedFile);
+            for (MultipartFile file : files) {
+                fileService.store(file);
             }
-            return ResponseEntity.status(HttpStatus.OK).body(response);
+
+            return ResponseEntity.status(HttpStatus.OK).
+                    body(fileService.getAllFilesAsResponseFileList());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Uploading file failed");
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).
+                    body("Uploading file failed");
         }
     }
 
     @GetMapping("/files")
     public ResponseEntity<List<ResponseFile>> getListFiles() {
-        List<ResponseFile> files = fileService.getAllFiles().map(dbFile -> {
-            String fileDownloadUri = ServletUriComponentsBuilder
-                    .fromCurrentContextPath()
-                    .path("/files/")
-                    .path(dbFile.getId())
-                    .toUriString();
-
-            return new ResponseFile(
-                    dbFile.getId(),
-                    dbFile.getName(),
-                    fileDownloadUri,
-                    dbFile.getType(),
-                    dbFile.getData().length);
-        }).collect(Collectors.toList());
-
-        return ResponseEntity.status(HttpStatus.OK).body(files);
+        return ResponseEntity.status(HttpStatus.OK).
+                body(fileService.getAllFilesAsResponseFileList());
     }
 
     @GetMapping("/files/{id}")
@@ -87,12 +67,13 @@ public class FileController {
     }
 
     @DeleteMapping("files/{id}")
-    public ResponseEntity deleteFile(@PathVariable String id){
+    public ResponseEntity deleteFile(@PathVariable String id) {
         boolean result = fileService.deleteFileById(id);
-        if(result){
-            return new ResponseEntity(HttpStatus.OK);
+        if (result) {
+            return ResponseEntity.status(HttpStatus.OK).
+                    body(fileService.getAllFilesAsResponseFileList());
         } else {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
