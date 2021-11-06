@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import { FileCardComponent } from './components/printer-main/file-card/file-card.component';
 import { PrinterConfigurationComponent } from './components/printer-configuration/printer-configuration.component';
 import { PrinterMainComponent } from './components/printer-main/printer-main.component';
+import { YeelightLedBulbMainComponent } from './components/yeelight-led-bulb-main/yeelight-led-bulb-main.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PrinterMainComponent } from './components/printer-main/printer-main.com
     HeaderComponent,
     FileCardComponent,
     PrinterConfigurationComponent,
-    PrinterMainComponent
+    PrinterMainComponent,
+    YeelightLedBulbMainComponent
   ],
     imports: [
         BrowserModule,
