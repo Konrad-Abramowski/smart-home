@@ -2,10 +2,7 @@
   <div class="row col-8">
     <form class="card my-3 col-12">
       <div class="card-body p-2">
-        <div class="form-group">
-          <button (click)="zajonc()">zajonc</button>
-        </div>
-        <app-yeelight-bulb-card *ngFor="let bulb of bulbs"></app-yeelight-bulb-card>
+        <app-yeelight-bulb-card [yeelightBulb]="bulb" *ngFor="let bulb of bulbs"></app-yeelight-bulb-card>
       </div>
     </form>
   </div>

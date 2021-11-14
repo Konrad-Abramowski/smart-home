@@ -1,12 +1,9 @@
-<p>yeelight-bulb-card works!</p>
-
-
-<!--<div class="custom-control custom-switch">-->
-<!--  <input type="checkbox" class="custom-control-input" id="{{bulb.capabilities.id}}Toggle">-->
-<!--  <label class="custom-control-label" for="{{bulb.capabilities.id}}Toggle">Toggle this switch element</label>-->
-<!--  <input type="color" name="{{bulb.capabilities.id}}" (change)="setColor()">-->
+<div class="custom-control custom-switch">
+  <input type="checkbox" class="custom-control-input" id="{{yeelightBulb.capabilities.id}}Toggle" (change)="toggle()" [(ngModel)]="power">
+  <label class="custom-control-label" for="{{yeelightBulb.capabilities.id}}Toggle">Power On/Off</label>
+  <input type="color" name="{{yeelightBulb.capabilities.id}}" (change)="setColor()" [(ngModel)]="color">
 <!--  <div>-->
-<!--    <label for="{{bulb.capabilities.id}}Brightness">Example range</label>-->
-<!--    <input type="range" class="custom-range" id="{{bulb.capabilities.id}}Brightness">-->
+<!--    <label for="{{yeelightBulb.capabilities.id}}Brightness">Example range</label>-->
+<!--    <input type="range" class="custom-range" id="{{yeelightBulb.capabilities.id}}Brightness">-->
 <!--  </div>-->
-<!--</div>-->
+</div>
