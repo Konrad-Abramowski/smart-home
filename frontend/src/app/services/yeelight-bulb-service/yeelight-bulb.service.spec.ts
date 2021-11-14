@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { YeelightLedBulbService } from './yeelight-led-bulb.service';
+import { YeelightBulbService } from './yeelight-bulb.service';
 
 describe('YeelightLedBulbService', () => {
-  let service: YeelightLedBulbService;
+  let service: YeelightBulbService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(YeelightLedBulbService);
+    service = TestBed.inject(YeelightBulbService);
   });
 
   it('should be created', () => {
