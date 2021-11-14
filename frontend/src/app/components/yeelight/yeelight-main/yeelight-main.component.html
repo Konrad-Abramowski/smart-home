@@ -5,15 +5,7 @@
         <div class="form-group">
           <button (click)="zajonc()">zajonc</button>
         </div>
-        <div *ngFor="let bulb of bulbs">
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="{{bulb.capabilities.id}}Toggle">
-            <label class="custom-control-label" for="{{bulb.capabilities.id}}Toggle">Toggle this switch element</label>
-            <input type="color" name="{{bulb.capabilities.id}}" (change)="setColor()">
-            <label for="{{bulb.capabilities.id}}Brightness">Example range</label>
-            <input type="range" class="custom-range" id="{{bulb.capabilities.id}}Brightness">
-          </div>
-        </div>
+        <app-yeelight-bulb-card *ngFor="let bulb of bulbs"></app-yeelight-bulb-card>
       </div>
     </form>
   </div>
