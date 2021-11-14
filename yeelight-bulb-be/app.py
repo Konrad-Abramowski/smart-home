@@ -9,12 +9,13 @@ app = Flask(__name__)
 
 
 @app.route('/discover_bulbs', methods=['GET'])
-# @cross_origin()
+@cross_origin()
 def discover_all_bulbs():
     return jsonify(discover_bulbs()), 200
 
 
 @app.route('/<ip>/toggle', methods=['GET'])
+@cross_origin()
 def toggle(ip):
     bulb = Bulb(ip)
     bulb.toggle()
@@ -23,6 +24,7 @@ def toggle(ip):
 
 
 @app.route('/<ip>/rgb', methods=['GET'])
+@cross_origin()
 def set_rgb_value(ip):
     bulb = Bulb(ip)
 
