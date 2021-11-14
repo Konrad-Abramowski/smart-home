@@ -7,10 +7,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import { FileCardComponent } from './components/printer-main/file-card/file-card.component';
-import { PrinterConfigurationComponent } from './components/printer-configuration/printer-configuration.component';
-import { PrinterMainComponent } from './components/printer-main/printer-main.component';
-import { YeelightLedBulbMainComponent } from './components/yeelight-led-bulb-main/yeelight-led-bulb-main.component';
+import { FileCardComponent } from './components/printer/printer-main/file-card/file-card.component';
+import { PrinterConfigurationComponent } from './components/printer/printer-configuration/printer-configuration.component';
+import { PrinterMainComponent } from './components/printer/printer-main/printer-main.component';
+import {YeelightMainComponent} from "./components/yeelight/yeelight-main/yeelight-main.component";
+import { YeelightBulbCardComponent } from './components/yeelight/yeelight-bulb-card/yeelight-bulb-card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { YeelightLedBulbMainComponent } from './components/yeelight-led-bulb-mai
     FileCardComponent,
     PrinterConfigurationComponent,
     PrinterMainComponent,
-    YeelightLedBulbMainComponent
+    YeelightMainComponent,
+    YeelightBulbCardComponent
   ],
     imports: [
         BrowserModule,

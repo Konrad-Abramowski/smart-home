@@ -1,0 +1,20 @@
+<div class="column d-flex justify-content-center">
+  <div class="row col-8">
+    <form class="card my-3 col-12">
+      <div class="card-body p-2">
+        <div class="form-group">
+          <button (click)="zajonc()">zajonc</button>
+        </div>
+        <div *ngFor="let bulb of bulbs">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="{{bulb.capabilities.id}}Toggle">
+            <label class="custom-control-label" for="{{bulb.capabilities.id}}Toggle">Toggle this switch element</label>
+            <input type="color" name="{{bulb.capabilities.id}}" (change)="setColor()">
+            <label for="{{bulb.capabilities.id}}Brightness">Example range</label>
+            <input type="range" class="custom-range" id="{{bulb.capabilities.id}}Brightness">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
