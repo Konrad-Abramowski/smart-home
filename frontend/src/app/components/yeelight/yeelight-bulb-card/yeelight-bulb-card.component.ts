@@ -12,6 +12,10 @@ export class YeelightBulbCardComponent implements OnInit {
   @Input() yeelightBulb: YeelightBulb
   color: string
   power: boolean = false
+  brightness: number
+  name: string = ''
+
+  isNameEditDisabled: boolean = true
 
   constructor(private rgbParserService: RgbParserService,
               private yeelightBulbService: YeelightBulbService) { }
@@ -19,13 +23,26 @@ export class YeelightBulbCardComponent implements OnInit {
   ngOnInit(): void {
     this.color = this.rgbParserService.decimalToHex(this.yeelightBulb.capabilities.rgb)
     this.power = this.yeelightBulb.capabilities.power == "on"
+    this.brightness = parseInt(this.yeelightBulb.capabilities.bright)
+    if (this.yeelightBulb.capabilities.name.length == 0) {
+      this.isNameEditDisabled = false
+    }
   }
 
   setColor() {
     this.yeelightBulbService.setColor(this.yeelightBulb.ip, this.rgbParserService.hexToRgb(this.color))
+    this.brightness = parseInt(this.yeelightBulb.capabilities.bright)
   }
 
   toggle() {
     this.yeelightBulbService.toggle(this.yeelightBulb.ip)
+  }
+
+  setBrightness() {
+    this.yeelightBulbService.setBrightness(this.yeelightBulb.ip, this.brightness)
+  }
+
+  setName() {
+    this.isNameEditDisabled = false
   }
 }

@@ -1,0 +1,30 @@
+.brightness-icon {
+  font-size: 25px;
+  padding-right: 10px;
+}
+
+.brightness-slider {
+  width: 95%;
+}
+
+.color-picker {
+  padding: 0;
+  border: none;
+  width: 50%;
+  border-radius: 25px;
+  vertical-align: middle;
+}
+
+.bulb-name {
+  border: none;
+  background-color: rgb(248, 244, 244);
+  margin: 0;
+  padding: 0;
+  width: 70%;
+}
+
+input {
+    color: black;
+    font-size: 1.3em;
+    font-weight: 150;
+}

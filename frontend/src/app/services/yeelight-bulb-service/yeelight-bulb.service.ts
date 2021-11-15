@@ -29,4 +29,12 @@ export class YeelightBulbService {
       }
     }).subscribe()
   }
+
+  setBrightness(ip: string, brightness: number) {
+    this.httpClient.get("http://localhost:5000/" + ip, {
+      params: {
+        brightness: brightness
+      }
+    }).subscribe()
+  }
 }
