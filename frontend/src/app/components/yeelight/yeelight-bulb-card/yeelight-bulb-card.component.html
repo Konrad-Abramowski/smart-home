@@ -1,9 +1,47 @@
-<div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="{{yeelightBulb.capabilities.id}}Toggle" (change)="toggle()" [(ngModel)]="power">
-  <label class="custom-control-label" for="{{yeelightBulb.capabilities.id}}Toggle">Power On/Off</label>
-  <input type="color" name="{{yeelightBulb.capabilities.id}}" (change)="setColor()" [(ngModel)]="color">
-<!--  <div>-->
-<!--    <label for="{{yeelightBulb.capabilities.id}}Brightness">Example range</label>-->
-<!--    <input type="range" class="custom-range" id="{{yeelightBulb.capabilities.id}}Brightness">-->
-<!--  </div>-->
+<div class="card my-3">
+  <div class="card-header d-flex p-0">
+    <input type="text" class="bulb-name p-3 mb-0" name="{{yeelightBulb.capabilities.id}}Name" [(ngModel)]="name"
+           [disabled]="isNameEditDisabled" placeholder="Type new bulb's name here:">
+    <button type="button" class="btn ml-auto mb-auto px-1 py-0"
+            [ngClass]="name.trim().length == 0 || isNameEditDisabled? 'btn-dark' : 'btn-primary'"
+            (click)="setName()"><i class="fa fa-pencil"></i></button>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="custom-control custom-switch align-middle">
+            <input type="checkbox" class="custom-control-input" id="{{yeelightBulb.capabilities.id}}Toggle"
+                   (change)="toggle()" [(ngModel)]="power">
+            <label class="custom-control-label" for="{{yeelightBulb.capabilities.id}}Toggle">On/Off</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex flex-row-reverse">
+            <input class="color-picker" type="color" name="{{yeelightBulb.capabilities.id}}" (change)="setColor()"
+                   [(ngModel)]="color">
+            <label class="pr-2 align-top">Color:</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="container p-0 mt-3">
+            <div class="row">
+              <div class="col-1 my-auto">
+                <label class="brightness-icon">&#9728;</label>
+              </div>
+              <div class="col-10 col-lg-11 ml-auto my-auto">
+                <input type="range" class="w-100 custom-range" id="{{yeelightBulb.capabilities.id}}Brightness"
+                       (change)="setBrightness()" [(ngModel)]="brightness" min="0" max="100" step="1">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
