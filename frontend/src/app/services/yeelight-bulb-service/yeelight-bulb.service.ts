@@ -37,4 +37,12 @@ export class YeelightBulbService {
       }
     }).subscribe()
   }
+
+  setName(ip: string, name: string ) {
+     return  this.httpClient.get("http://localhost:5000/" + ip, {
+      params: {
+        name: name
+      }
+    })
+  }
 }

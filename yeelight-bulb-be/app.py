@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from yeelight import discover_bulbs
 from yeelight import Bulb
 from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -33,6 +34,23 @@ def set_rgb_value(ip):
     blue = int(request.args.get('blue'))
 
     bulb.set_rgb(red, green, blue)
+    return "", 200
+
+
+@app.route('/<ip>', methods=['GET'])
+@cross_origin()
+def set_brightness(ip):
+    bulb = Bulb(ip)
+
+    brightness = request.args.get('brightness')
+    name = request.args.get('name')
+
+    if brightness is not None:
+        bulb.set_brightness(int(brightness))
+
+    if name is not None:
+        bulb.set_name(name)
+
     return "", 200
 
 

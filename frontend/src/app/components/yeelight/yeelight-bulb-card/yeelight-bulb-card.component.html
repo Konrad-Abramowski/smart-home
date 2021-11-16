@@ -2,8 +2,9 @@
   <div class="card-header d-flex p-0">
     <input type="text" class="bulb-name p-3 mb-0" name="{{yeelightBulb.capabilities.id}}Name" [(ngModel)]="name"
            [disabled]="isNameEditDisabled" placeholder="Type new bulb's name here:">
-    <button type="button" class="btn ml-auto mb-auto px-1 py-0" [ngClass]="name.length === 0 ? 'btn-dark' : 'btn-primary'"
-            (click)="setName()">{{name.length === 0 ? "Change bulb's name" : "Submit bulb's name"}}</button>
+    <button type="button" class="btn ml-auto mb-auto px-1 py-0"
+            [ngClass]="name.trim().length == 0 || isNameEditDisabled? 'btn-dark' : 'btn-primary'"
+            (click)="setName()">{{name.trim().length == 0 || isNameEditDisabled ? "Change bulb's name" : "Submit bulb's name"}}</button>
   </div>
   <div class="card-body">
     <div class="container">
@@ -11,8 +12,7 @@
         <div class="col">
           <div class="custom-control custom-switch align-middle">
             <input type="checkbox" class="custom-control-input" id="{{yeelightBulb.capabilities.id}}Toggle"
-                   (change)="toggle()"
-                   [(ngModel)]="power">
+                   (change)="toggle()" [(ngModel)]="power">
             <label class="custom-control-label" for="{{yeelightBulb.capabilities.id}}Toggle">Power On/Off</label>
           </div>
         </div>
@@ -29,8 +29,7 @@
           <div>
             <label class="brightness-icon">&#9728;</label>
             <input type="range" class="brightness-slider custom-range" id="{{yeelightBulb.capabilities.id}}Brightness"
-                   (change)="setBrightness()"
-                   [(ngModel)]="brightness" min="0" max="100" step="1">
+                   (change)="setBrightness()" [(ngModel)]="brightness" min="0" max="100" step="1">
           </div>
         </div>
       </div>
