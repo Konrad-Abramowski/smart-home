@@ -5,7 +5,7 @@ import {PrinterMainComponent} from "./components/printer/printer-main/printer-ma
 import {YeelightMainComponent} from "./components/yeelight/yeelight-main/yeelight-main.component";
 
 const routes: Routes = [
-  {path: '', component: PrinterMainComponent},
+  {path: 'printer', component: PrinterMainComponent},
   {path: 'configuration/printer', component: PrinterConfigurationComponent},
   {path: 'yeelight-leb-bulb', component: YeelightMainComponent}
 ];
