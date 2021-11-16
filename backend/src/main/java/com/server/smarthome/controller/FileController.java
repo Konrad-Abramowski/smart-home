@@ -124,6 +124,7 @@ public class FileController {
                 job.setPageable(new PDFPageable(document));
                 job.setPrintService(myPrintService);
                 job.print();
+                file.deleteOnExit();
                 document.close();
             }
 
