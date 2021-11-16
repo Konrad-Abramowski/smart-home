@@ -25,11 +25,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="col justify-content-md-center">
-          <div>
-            <label class="brightness-icon">&#9728;</label>
-            <input type="range" class="brightness-slider custom-range" id="{{yeelightBulb.capabilities.id}}Brightness"
-                   (change)="setBrightness()" [(ngModel)]="brightness" min="0" max="100" step="1">
+        <div class="col">
+          <div class="container p-0 mt-3">
+            <div class="row">
+              <div class="col-1 my-auto">
+                <label class="brightness-icon">&#9728;</label>
+              </div>
+              <div class="col-11 my-auto">
+                <input type="range" class="w-100 custom-range" id="{{yeelightBulb.capabilities.id}}Brightness"
+                       (change)="setBrightness()" [(ngModel)]="brightness" min="0" max="100" step="1">
+              </div>
+            </div>
           </div>
         </div>
       </div>
