@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
     smart-home-db:
@@ -12,20 +12,22 @@ services:
         - ./database/init.sql:/docker-entrypoint-initdb.d/1-schema.sql        
         ports:
         - "5432:5432"
-    smart-home-backend:
-        container_name: smart-home-backend
-        build: 
-            context: ./backend
-        ports:
-        - "8080:8080"
-        depends_on:
-        - smart-home-db
-        environment: 
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://smart-home-db:5432/smart-home-db
     smart-home-frontend:
         container_name: smart-home-frontend
         build: ./frontend
         ports:
-        - "4200:4200"
-        environment:
-            - NODE_ENV=production
+        - "4200:4200" 
+    yeelight-api:
+        container_name: yeelight-api
+        build: 
+            context: ./yeelight-bulb-be
+        network_mode: "host"
+    smart-home-backend:
+        container_name: smart-home-backend
+        build: 
+            context: ./backend
+        depends_on:
+        - smart-home-db
+        network_mode: "host"
+        volumes:
+        - /usr/bin/lpr:/usr/bin/lpr
