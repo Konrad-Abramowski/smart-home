@@ -55,4 +55,4 @@ def set_brightness(ip):
 
 
 if __name__ == '__main__':
-    app.run("192.168.0.59")
+    app.run("0.0.0.0")
