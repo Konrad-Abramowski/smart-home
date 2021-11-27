@@ -1,0 +1,89 @@
+@import "../../../../styles";
+
+/*!* Upload frame*!*/
+.frame {
+  width: 100%;
+  border-radius: 2px;
+  overflow: hidden;
+  color: #333;
+  font-family: "Open Sans", Helvetica, sans-serif;
+}
+
+.upload-form {
+  border-radius: 3px;
+  box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.upload-form__content {
+  width: 100%;
+  padding: 32px 17px 0 17px;
+}
+
+.upload-form__drop-spot {
+  position: relative;
+  height: 160px;
+  border: 1px dashed #999;
+  border-radius: 3px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-form__file-name {
+  font-size: 1.3rem;
+  margin-bottom: 0;
+  margin-right: .75em;
+}
+
+.upload-form__cloud-ico {
+  font-size: 2.25em;
+}
+
+.upload-form__utils {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.title {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #999;
+  text-align: center;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 300;
+  color: #666;
+}
+
+.upload-icon {
+  margin: 0;
+}
+
+.upload-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.upload-utils__btn {
+  margin: 16px 0;
+}
+
+.upload-utils__btn:not(:first-child) {
+  margin-left: .75em;
+}
+
+.upload-utils__btn .fas {
+  margin-left: .5em;
+}

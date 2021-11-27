@@ -1,0 +1,10 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="d-flex">
+      <h5 class="card-title d-inline mr-auto overflow-hidden">{{file.name}}</h5>
+      <button class="btn btn-danger d-inline ml-auto" type="button" (click)="deleteFile(file.id)">Delete</button>
+    </div>
+    <h6 class="card-subtitle file-item__subtitle"></h6>
+    <a class="card-link d-inline-block pt-2 file-item__download" href="{{file.url}}">Download file</a>
+  </div>
+</div>

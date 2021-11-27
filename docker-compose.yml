@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+    smart-home-db:
+        image: 'postgres:13.1-alpine'
+        container_name: smart-home-db
+        restart: always 
+        environment:
+        - POSTGRES_DB=smart-home-db
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=123456
+        volumes: 
+        - ./database/init.sql:/docker-entrypoint-initdb.d/1-schema.sql        
+        ports:
+        - "5432:5432"
+    smart-home-frontend:
+        container_name: smart-home-frontend
+        restart: always 
+        build: ./frontend
+        ports:
+        - "4200:4200" 
+    yeelight-api:
+        container_name: yeelight-api
+        restart: always
+        build: 
+            context: ./yeelight-bulb-be
+        network_mode: "host"
+# uncomment if you are using device in i386 architecture
+    # smart-home-backend:
+    #     container_name: smart-home-backend
+    #     restart: always 
+    #     build: 
+    #         context: ./backend
+    #     depends_on:
+    #     - smart-home-db
+    #     network_mode: "host"
+    #     volumes:
+    #     - /usr/bin/lpr:/usr/bin/lpr
