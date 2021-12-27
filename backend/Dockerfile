@@ -7,8 +7,8 @@ RUN mvn -f /usr/local/service/pom.xml clean package
 FROM adoptopenjdk/openjdk11:latest
 EXPOSE 8080
 WORKDIR /usr/local/service
-COPY --from=build /usr/local/service/target/smart-home-0.0.1-SNAPSHOT.jar /usr/local/service/target/smart-home-0.0.1-SNAPSHOT.jar
+COPY --from=build /usr/local/service/target/smart-home-1.0.0.jar /usr/local/service/target/smart-home-1.0.0.jar
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install cups-client
-ENTRYPOINT ["java", "-jar", "target/smart-home-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "target/smart-home-1.0.0.jar"]
