@@ -13,19 +13,18 @@ services:
         - ./database/init.sql:/docker-entrypoint-initdb.d/1-schema.sql        
         ports:
         - "5432:5432"
-    smart-home-frontend:
-        container_name: smart-home-frontend
-        restart: always 
-        build: ./frontend
-        ports:
-        - "4200:4200" 
-    yeelight-api:
-        container_name: yeelight-api
-        restart: always
-        build: 
-            context: ./yeelight-bulb-be
-        network_mode: "host"
-# uncomment if you are using device in i386 architecture
+    # smart-home-frontend:
+    #     container_name: smart-home-frontend
+    #     restart: always 
+    #     build: ./frontend
+    #     ports:
+    #     - "4200:4200" 
+    # yeelight-api:
+    #     container_name: yeelight-api
+    #     restart: always
+    #     build: 
+    #         context: ./yeelight-bulb-be
+    #     network_mode: "host"
     # smart-home-backend:
     #     container_name: smart-home-backend
     #     restart: always 

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  yeelightApiUrl: 'http://192.168.0.115:5000',
-  fileApiUrl: 'http://192.168.0.115:8080'
+  yeelightApiUrl: 'http://localhost:5000',
+  fileApiUrl: 'http://localhost:8080'
 };
 
 /*

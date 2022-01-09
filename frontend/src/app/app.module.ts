@@ -12,6 +12,7 @@ import { PrinterConfigurationComponent } from './components/printer/printer-conf
 import { PrinterMainComponent } from './components/printer/printer-main/printer-main.component';
 import {YeelightMainComponent} from "./components/yeelight/yeelight-main/yeelight-main.component";
 import { YeelightBulbCardComponent } from './components/yeelight/yeelight-bulb-card/yeelight-bulb-card.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { YeelightBulbCardComponent } from './components/yeelight/yeelight-bulb-c
     PrinterConfigurationComponent,
     PrinterMainComponent,
     YeelightMainComponent,
-    YeelightBulbCardComponent
+    YeelightBulbCardComponent,
+    SignInComponent
   ],
     imports: [
         BrowserModule,
